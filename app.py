@@ -26,10 +26,16 @@ def authorize():
     c.execute("select * from access")
     for i in c.fetchall():
         if str(i[0]) == admin and str(i[1]) == passwd:
-            c.execute("select * from customer")
-            res = c.fetchall()
-            return render_template('/dashboard.html',customers=res,ad=admin)
+            c.execute("select * from debt_customer_details ")
+            res1 = c.fetchall()
+            c.execute("select * from paid_customer_details ")
+            res2 = c.fetchall()
+            return render_template('/dashboard.html',paid_customers=res2,ad=admin,debt_customers = res1)
     return redirect(url_for('home'))
+
+@app.route('/customer')
+def customer():
+    return "HI customer function"
 
 if __name__ == '__main__':
     app.run()

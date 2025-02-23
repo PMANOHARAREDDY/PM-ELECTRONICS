@@ -3,16 +3,39 @@
     <head>
         <title>Lakshmi Kanth & co.</title>
     </head>
-    <body style="background-color: rgb(83, 178, 213);">
+    <body style="background-color: rgb(62, 79, 73);">
         <div>
             <h1 style="text-align: center;color: rgb(45, 92, 4);background-color: rgb(241, 237, 16);">Lakshmikanth group of fertilizer shops pvt. limited</h1>
         </div>
         <div>
             <h2 style="text-align: center;color: rgb(255, 0, 0);background-color: rgb(153, 227, 56);"> Accessing admin priviliges as {{ad}} </h2>
         </div>
+        <div style="text-align: center;">
+            <h2 style="display: inline;color: blueviolet;">Debt lent so far : </h2>
+            <h1 style="display: inline;color: rgb(255, 0, 0);">{{debt_customers | sum(attribute='3')}}</h1>
+        </div>
+        <div style="text-align: center;">
+            <h2 style="display: inline;color: blueviolet;"> Total Cash business occurred so far : </h2>
+            <h1 style="display: inline;color: rgb(255, 0, 0);">{{paid_customers | sum(attribute='3')}}</h1>
+        </div>
+        <div style="margin: 50px;">
+            <p style="display: inline;margin: 30px;">
+                <a href="customer.html"><img src="/static/customer.jpg" width="300px"></a>
+            </p>
+            <p style="display: inline;margin: 15px;">
+                <a href="stats.html"><img src="/static/stats.jpg" width="300px"></a>
+            </p>
+            <p style="display: inline;margin: 15px;">
+                <a href="stock.html"><img src="/static/stock.jpg" width="300px"></a>
+            </p>
+            <p style="display: inline;margin: 15px;">
+                <a href="worker.html"><img src="/static/worker.jpg" width="300px"></a>
+            </p>
+        </div>
         <div>
-            <h2 style="display: inline;">Debt lent so far : </h2>
-            <h1 style="display: inline;color: rgb(255, 0, 0);">{{customers | sum(attribute='2')}}</h1>
+            <a href="http://localhost:5000">
+                <button style="width: 100px;height: 50px;background-color: rgb(117, 52, 5);font-weight: bold;margin-left: 700px;">LOGOUT</button>
+            </a>
         </div>
     </body>
 </html>
