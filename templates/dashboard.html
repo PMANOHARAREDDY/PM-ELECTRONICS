@@ -10,26 +10,18 @@
         <div>
             <h2 style="text-align: center;color: rgb(255, 0, 0);background-color: rgb(153, 227, 56);"> Accessing admin priviliges as {{ad}} </h2>
         </div>
-        <div style="text-align: center;">
-            <h2 style="display: inline;color: blueviolet;">Debt lent so far : </h2>
-            <h1 style="display: inline;color: rgb(255, 0, 0);">{{debt_customers | sum(attribute='3')}}</h1>
-        </div>
-        <div style="text-align: center;">
-            <h2 style="display: inline;color: blueviolet;"> Total Cash business occurred so far : </h2>
-            <h1 style="display: inline;color: rgb(255, 0, 0);">{{paid_customers | sum(attribute='3')}}</h1>
-        </div>
         <div style="margin: 50px;">
             <p style="display: inline;margin: 30px;">
-                <a href="customer.html"><img src="/static/customer.jpg" width="300px"></a>
+                <a href="http://localhost:5000/dashboard/customer"><img src="/static/customer.jpg" width="300px"></a>
             </p>
             <p style="display: inline;margin: 15px;">
-                <a href="stats.html"><img src="/static/stats.jpg" width="300px"></a>
+                <a href="http://localhost:5000/dashboard/stats"><img src="/static/stats.jpg" width="300px"></a>
             </p>
             <p style="display: inline;margin: 15px;">
-                <a href="stock.html"><img src="/static/stock.jpg" width="300px"></a>
+                <a href="http://localhost:5000/dashboard/stock"><img src="/static/stock.jpg" width="300px"></a>
             </p>
             <p style="display: inline;margin: 15px;">
-                <a href="worker.html"><img src="/static/worker.jpg" width="300px"></a>
+                <a href="http://localhost:5000/dashboard/worker"><img src="/static/worker.jpg" width="300px"></a>
             </p>
         </div>
         <div>

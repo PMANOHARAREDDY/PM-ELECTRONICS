@@ -33,9 +33,22 @@ def authorize():
             return render_template('/dashboard.html',paid_customers=res2,ad=admin,debt_customers = res1)
     return redirect(url_for('home'))
 
-@app.route('/customer')
+@app.route('/dashboard/customer')
 def customer():
-    return "HI customer function"
+    return render_template('/customer.html')
+
+@app.route('/dashboard/worker')
+def worker():
+    return render_template('/worker.html')
+
+@app.route('/dashboard/stock')
+def stock():
+    return render_template('/stock.html')
+
+@app.route('/dashboard/stats')
+def stats():
+    return render_template('/stats.html')
+
 
 if __name__ == '__main__':
     app.run()
