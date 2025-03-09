@@ -55,6 +55,64 @@ def stock():
 def stats():
     return render_template('/stats.html')
 
+@app.route('/dashboard/stats/dstats')
+def dstats():
+    return render_template('/dstats.html')
+
+
+@app.route('/dashboard/stats/dstats/db', methods = ['POST','GET'])
+def db():
+    date = request.form['date']
+    c.execute("select sum(amount) from paid_customer_details where date = '{}'".format(date))
+    camt = c.fetchall()
+    c.execute("select sum(amount) from debt_customer_details where date = '{}'".format(date))
+    damt = c.fetchall()
+    c.execute("select sum(amount) from paid_customer_details where date = '{}' and product_name = 'Clearance'".format(date))
+    ccamt = c.fetchall()
+    c.execute("select count(*) from paid_customer_details where date = '{}'".format(date))
+    c_ct = c.fetchall()
+    c.execute("select count(*) from debt_customer_details where date = '{}'".format(date))
+    d_ct = c.fetchall()
+    return render_template('stats_f.html',ccash = camt[0][0],dcash = damt[0][0],c_amt = ccamt[0][0],cash_count = c_ct[0][0], debt_count = d_ct[0][0])
+
+@app.route('/dashboard/stats/mstats')
+def mstats():
+    return render_template('/mstats.html')
+
+@app.route('/dashboard/stats/mstats/mb', methods = ['POST','GET'])
+def mb():
+    date = request.form['month']
+    c.execute("select sum(amount) from paid_customer_details where Month(date) = '{}' and Year(date) = '{}'".format(int(date[5:]),int(date[:4])))
+    camt = c.fetchall()
+    c.execute("select sum(amount) from debt_customer_details where Month(date) = '{}' and Year(date) = '{}'".format(int(date[5:]),int(date[:4])))
+    damt = c.fetchall() 
+    c.execute("select sum(amount) from paid_customer_details where Month(date) = '{}' and product_name = 'Clearance' and Year(date) = '{}'".format(int(date[5:]),int(date[:4])))
+    ccamt = c.fetchall()
+    c.execute("select count(*) from paid_customer_details where Month(date) = '{}' and Year(date) = '{}'".format(int(date[5:]),int(date[:4])))
+    c_ct = c.fetchall()
+    c.execute("select count(*) from debt_customer_details where Month(date) = '{}' and Year(date) = '{}'".format(int(date[5:]),int(date[:4])))
+    d_ct = c.fetchall()
+    return render_template('stats_f.html',ccash = camt[0][0],dcash = damt[0][0],debt_count = d_ct[0][0],cash_count = c_ct[0][0],c_amt = ccamt[0][0])
+
+@app.route('/dashboard/stats/ystats')
+def ystats():
+    return render_template('/ystats.html')
+
+@app.route('/dashboard/stats/ystats/yb', methods = ['POST','GET'])
+def yb():
+    date = request.form['year']
+    c.execute("select sum(amount) from paid_customer_details where Year(date) = '{}'".format(int(date)))
+    camt = c.fetchall()
+    c.execute("select sum(amount) from debt_customer_details where Year(date) = '{}'".format(int(date)))
+    damt = c.fetchall() 
+    c.execute("select sum(amount) from paid_customer_details where product_name = 'Clearance' and Year(date) = '{}'".format(int(date)))
+    ccamt = c.fetchall()
+    c.execute("select count(*) from paid_customer_details where Year(date) = '{}'".format(int(date)))
+    c_ct = c.fetchall()
+    c.execute("select count(*) from debt_customer_details where Year(date) = '{}'".format(int(date)))
+    d_ct = c.fetchall()
+    return render_template('stats_f.html',ccash = camt[0][0],dcash = damt[0][0],debt_count = d_ct[0][0],cash_count = c_ct[0][0],c_amt = ccamt[0][0])
+
 @app.route('/dashboard/customer/cash')
 def cash():
     return render_template('/cash.html')
@@ -118,4 +176,4 @@ def clear3():
     return redirect(url_for('customer'))
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
