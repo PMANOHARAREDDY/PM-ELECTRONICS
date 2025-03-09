@@ -113,6 +113,18 @@ def yb():
     d_ct = c.fetchall()
     return render_template('stats_f.html',ccash = camt[0][0],dcash = damt[0][0],debt_count = d_ct[0][0],cash_count = c_ct[0][0],c_amt = ccamt[0][0])
 
+@app.route('/dashboard/stats/stocks')
+def stocks():
+    c.execute("select * from stocks")
+    stcks = c.fetchall()
+    return render_template('/stockstats.html',stcks = stcks)
+
+@app.route('/dashboard/stats/products')
+def products():
+    c.execute("select * from product_details")
+    prdts = c.fetchall()
+    return render_template('/productstats.html',prdts = prdts)
+
 @app.route('/dashboard/customer/cash')
 def cash():
     return render_template('/cash.html')
