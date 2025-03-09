@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lakshmi Kanth & co.</title>
+    </head>
+    <body style="background-color: rgb(62, 79, 73);">
+        <div>
+            <h1 style="text-align: center;color: rgb(45, 92, 4);background-color: rgb(241, 237, 16);">Lakshmikanth group of fertilizer shops pvt. limited</h1>
+        </div>
+        <div>
+            <h2 style="text-align: center;color: rgb(255, 0, 0);background-color: rgb(153, 227, 56);"> Worker update </h2>
+        </div>
+        <div style="margin-left: 420px;margin-top: 120px;">
+            {% for worker in workers %}
+                <h2>Name : <strong>{{ worker[0] }}</strong> 
+                     Job : <strong>{{ worker[1] }}</strong> 
+                     Phone : <strong>{{ worker[2] }}</strong>
+                     Salary : <strong>{{ worker[3] }}</strong> 
+                     Age : <strong>{{ worker[4] }}</strong></h2>
+            {% endfor %}
+        </div>
+        <div>
+            <form action="http://localhost:5000/dashboard/worker/update_worker2" method="post">
+                <table>
+                    <tr>
+                        <td>Name : </td>
+                        <td>
+                            <input type="text" name="name" placeholder="Name of the worker">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number : </td>
+                        <td><input type="number" name="phone" placeholder="Phone Number" min="1000000000"/></td>
+                    </tr>
+                    <tr>
+                        <td>Salary : </td>
+                        <td><input type="number" name="salary" placeholder="Salary" min="12000"/></td>
+                    </tr>
+                    <tr>
+                        <td>Age : </td>
+                        <td><input type="number" name="age" placeholder="age" min="18"/></td>
+                    </tr>
+                    <tr>
+                        <td>Job : </td>
+                        <td><input type="text" name="job" placeholder="job" /></td>
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Submit"/></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+        </div>
+    </body>
+</html>
+

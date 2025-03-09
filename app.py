@@ -2,7 +2,6 @@ from flask import *
 import pyttsx3
 import mysql.connector as sql
 import datetime,math
-
 def interest(p,day_took):
     today = datetime.date.today()
     diff = (today-day_took).days
@@ -32,11 +31,7 @@ def authorize():
     c.execute("select * from access")
     for i in c.fetchall():
         if str(i[0]) == admin and str(i[1]) == passwd:
-            c.execute("select * from debt_customer_details ")
-            res1 = c.fetchall()
-            c.execute("select * from paid_customer_details ")
-            res2 = c.fetchall()
-            return render_template('/dashboard.html',paid_customers=res2,ad=admin,debt_customers = res1)
+            return render_template('/dashboard.html',ad=admin)
     return redirect(url_for('home'))
 
 @app.route('/dashboard/customer')
@@ -51,6 +46,33 @@ def worker():
 def stock():
     return render_template('/stock.html')
 
+@app.route('/dashboard/stock/update_product')
+def update_product():
+    c.execute("select * from product_details")
+    prdts = c.fetchall()
+    return render_template('/pro_update.html',prdts=prdts)
+
+@app.route('/dashboard/stock/update_product2',methods = ['POST','GET'])
+def update_product2():
+    cashon = request.form['cashon']
+    debton = request.form['debton']
+    producton = request.form['producton']
+    c.execute("update product_details set cash_price = '{}', debt_price = '{}' where product_name = '{}'".format(cashon,debton,producton))
+    conn.commit()
+    return redirect(url_for('stock'))
+
+@app.route('/dashboard/stock/add_stock')
+def add_stock():
+    return render_template('/add_stock.html')
+
+@app.route('/dashboard/stock/add_stock2',methods = ['POST','GET'])
+def add_stock2():
+    product = request.form['product']
+    quantity = request.form['quantity']
+    c.execute("update stocks set quantity = quantity + '{}' where product_name = '{}'".format(quantity,product))
+    conn.commit()
+    return redirect(url_for('stock'))
+
 @app.route('/dashboard/stats')
 def stats():
     return render_template('/stats.html')
@@ -58,7 +80,6 @@ def stats():
 @app.route('/dashboard/stats/dstats')
 def dstats():
     return render_template('/dstats.html')
-
 
 @app.route('/dashboard/stats/dstats/db', methods = ['POST','GET'])
 def db():
@@ -186,6 +207,44 @@ def clear3():
     c.execute("insert into paid_customer_details values('{}','{}','{}','{}','{}')".format(name,Phone,product,debt,datetime.date.today()))
     conn.commit()
     return redirect(url_for('customer'))
+
+@app.route('/dashboard/worker/view')
+def view():
+    c.execute('select * from worker_details')
+    res = c.fetchall()
+    return render_template('Worker_view.html',workers = res)
+
+@app.route('/dashboard/worker/add_worker')
+def add_worker():
+    return render_template('add_worker.html')
+
+@app.route('/dashboard/worker/add_worker2', methods = ['POST','GET'])
+def add_worker2():
+    name = request.form['name']
+    age = request.form['age']
+    phone = request.form['phone']
+    salary = request.form['salary']
+    job = request.form['job']
+    c.execute("insert into worker_details values('{}','{}','{}','{}','{}')".format(name,job,phone,salary,age))
+    conn.commit()
+    return redirect(url_for('worker'))
+
+@app.route('/dashboard/worker/update_worker')
+def update_worker():
+    c.execute('Select * from worker_details')
+    res = c.fetchall()
+    return render_template('worker_update.html',workers = res)
+
+@app.route('/dashboard/worker/update_worker2', methods = ['POST','GET'])
+def update_worker2():
+    name = request.form['name']
+    age = request.form['age']
+    phone = request.form['phone']
+    salary = request.form['salary']
+    job = request.form['job']
+    c.execute("update worker_details set age = '{}', phone = '{}', salary = '{}', job = '{}' where name = '{}'".format(age,phone,salary,job,name))
+    conn.commit()
+    return redirect(url_for('worker'))
 
 if __name__ == '__main__':
     app.run(debug=True)

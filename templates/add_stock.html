@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lakshmi Kanth & co.</title>
+    </head>
+    <body style="background-color: rgb(62, 79, 73);">
+        <div>
+            <h1 style="text-align: center;color: rgb(45, 92, 4);background-color: rgb(241, 237, 16);">Lakshmikanth group of fertilizer shops pvt. limited</h1>
+        </div>
+        <div>
+            <h2 style="text-align: center;color: rgb(255, 0, 0);background-color: rgb(153, 227, 56);"> Stock addition </h2>
+        </div>
+        <div>
+            <form action="http://localhost:5000/dashboard/stock/add_stock2" method="post">
+                <table>
+                    <tr>
+                        <td>Product</td>
+                        <td>
+                            <select name="product">
+                                <option value="Rogar">ROGAR</option>
+                                <option value="Rogar-f">ROGAR-F</option>
+                                <option value="Rogar-m">ROGAR-M</option>
+                                <option value="Rogar-d">ROGAR-D</option>
+                                <option value="Rogar-k">ROGAR-K</option>
+                            </select>
+                        </td>
+                        <td><input type="number" name="quantity" placeholder="Quantity" min="1"/></td>
+                        <td><input type="submit" value="Submit"/></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>
+
