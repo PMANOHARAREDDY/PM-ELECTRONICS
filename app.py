@@ -159,6 +159,8 @@ def cash2():
     amount = c.fetchone()[0]
     c.execute("insert into paid_customer_details values('{}','{}','{}','{}','{}')".format(name,phone,product,amount,datetime.date.today()))
     conn.commit()
+    c.execute("update stocks set quantity = quantity-1 where product_name = '{}'".format(product))
+    conn.commit()
     return redirect(url_for('customer'))
 
 @app.route('/dashboard/customer/debt')
@@ -173,6 +175,8 @@ def debt2():
     c.execute("select cash_price from product_details where product_name = '{}'".format(str(product)))
     amount = c.fetchone()[0]
     c.execute("insert into debt_customer_details values('{}','{}','{}','{}','{}')".format(name,phone,product,amount,datetime.date.today()))
+    conn.commit()
+    c.execute("update stocks set quantity = quantity-1 where product_name = '{}'".format(product))
     conn.commit()
     return redirect(url_for('customer'))
 
