@@ -62,7 +62,7 @@ def send_msg4(server, sender_email, customer_mails):
 def send_msg2(server, sender_email, receiver_mails):
     try:
         message = MIMEMultipart("alternative")
-        message["Subject"] = "Alert!!!! You forgot debt (Testing Application PM ELECTRONICS-2)"
+        message["Subject"] = "Alert!!!! You forgot paying for the electronics you purchased"
         message["From"] = sender_email
         message["To"] = ", ".join(receiver_mails)
         html = """\
@@ -101,7 +101,7 @@ def send_msg2(server, sender_email, receiver_mails):
 def send_msg3(server, sender_email, receiver_mails):
     try:
         message = MIMEMultipart("alternative")
-        message["Subject"] = "Alert!!!! You forgot debt (Testing Application PM ELECTRONICS-2)"
+        message["Subject"] = "Alert!!!! You forgot paying for the electronics you purchased"
         message["From"] = sender_email
         message["To"] = ", ".join(receiver_mails)
         print(receiver_mails)
