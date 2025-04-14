@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Lakshmi Kanth & co.</title>
+        <title>PM Electronics</title>
+        <link rel="icon" type="imgage" href="/static/logo.jpg">
     </head>
     <body style="background-color: rgb(62, 79, 73);">
         <div>
@@ -10,13 +11,14 @@
         <div>
             <h2 style="text-align: center;color: rgb(255, 0, 0);background-color: rgb(153, 227, 56);"> Worker's Details </h2>
         </div>
-        <div style="margin-left: 420px;margin-top: 120px;">
+        <div style="margin-left: 20px;margin-top: 100px;">
             {% for worker in workers %}
                 <h2>Name : <strong>'{{ worker[0] }}'</strong>, 
                      Job: <strong>'{{ worker[1] }}'</strong>, 
                      Phone: <strong>{{ worker[2] }}</strong>,
                      Salary: <strong>{{ worker[3] }}</strong>, 
-                     Age: <strong>{{ worker[4] }}</strong></h2>
+                     DOB: <strong>{{ worker[4] }}</strong>,
+                     Email-id : <strong>{{ worker[5] }}</strong></h2>
             {% endfor %}
         </div>
     </body>
