@@ -236,7 +236,7 @@ def add_stock():
 def add_stock2():
     product = request.form['product']
     quantity = request.form['quantity']
-    c.execute("update stocks set quantity = quantity + '{}' where product_name = '{}'".format(quantity,product))
+    c.execute("update product_details set quantity = quantity + '{}' where product_name = '{}'".format(quantity,product))
     conn.commit()
     return redirect(url_for('stock'))
 
@@ -303,7 +303,7 @@ def yb():
 
 @app.route('/dashboard/stats/stocks')
 def stocks():
-    c.execute("select * from stocks")
+    c.execute("select * from product_details")
     stcks = c.fetchall()
     return render_template('/stockstats.html',stcks = stcks)
 
@@ -327,7 +327,7 @@ def cash2():
     amount = c.fetchone()[0]
     c.execute("insert into paid_customer_details values('{}','{}','{}','{}','{}','{}')".format(name,phone,product,amount,datetime.date.today(),email))
     conn.commit()
-    c.execute("update stocks set quantity = quantity-1 where product_name = '{}'".format(product))
+    c.execute("update product_details set quantity = quantity-1 where product_name = '{}'".format(product))
     conn.commit()
     return redirect(url_for('customer'))
 
@@ -345,7 +345,7 @@ def debt2():
     amount = c.fetchone()[0]
     c.execute("insert into debt_customer_details values('{}','{}','{}','{}','{}','{}')".format(name,phone,product,amount,datetime.date.today(),email))
     conn.commit()
-    c.execute("update stocks set quantity = quantity-1 where product_name = '{}'".format(product))
+    c.execute("update product_details set quantity = quantity-1 where product_name = '{}'".format(product))
     conn.commit()
     return redirect(url_for('customer'))
 
