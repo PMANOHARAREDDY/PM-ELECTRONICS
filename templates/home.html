@@ -3,13 +3,42 @@
     <head>
         <title>PM Electronics</title>
         <link rel="icon" type="imgage" href="/static/logo.jpg">
+        <style>
+            .submit-btn {
+            width: 100%;
+            padding: 10px 0;
+            background: linear-gradient(90deg,#0c5e7e,#2d5c04);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .submit-btn:hover {
+            background: linear-gradient(90deg,#2d5c04,#0c5e7e);
+            transform: translateY(-2px) scale(1.03);
+        }
+        .login-card {
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(8px);
+            border-radius: 18px;
+            padding: 38px 32px 28px 32px;
+            width: 340px;
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.18);
+        }
+        </style>
     </head>
     <body style="background-color: rgb(12, 94, 126); background-image: url('/static/logo.jpg'); background-repeat: no-repeat; background-position: center;height: 100vh; background-size: 500px;">
         <h1 style="text-align: center;color: rgb(45, 92, 4);background-color: rgb(241, 237, 16);">PM Electronics pvt. limited</h1>
         <div>
             <h3 style="text-align: center;color: rgb(255, 0, 0);background-color: rgb(153, 227, 56);">!!!!!!! Illegal access is strictly prohibited !!!!!!!</h3>
         </div>
-        <div style="text-align: center;">
+        <div class="login-card">
             <h2>Admin login : </h2>
             <form action="http://localhost:5000/dashboard" method="post">
                 <table>
@@ -22,7 +51,7 @@
                         <td><input type="password" name="pass" placeholder="Password "/></td>
                     </tr>
                     <tr>
-                        <td style="padding: 10px;"><input type="submit" value="Submit"/></td>
+                        <td><button type="submit" class="submit-btn">Log In</button></td>
                     </tr>
                 </table>
             </form>

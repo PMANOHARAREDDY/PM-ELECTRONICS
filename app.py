@@ -104,7 +104,6 @@ def send_msg3(server, sender_email, receiver_mails):
         message["Subject"] = "Alert!!!! You forgot paying for the electronics you purchased"
         message["From"] = sender_email
         message["To"] = ", ".join(receiver_mails)
-        print(receiver_mails)
         html = """\
         <html>
             <body style="background-color: #364585; font-family: Arial, sans-serif;">
@@ -150,6 +149,8 @@ def send_msg(server, sender_email):
             more_than_3months.append(i[0])
         elif (today-i[1]).days>30:
             more_than_1month.append(i[0])
+            print(more_than_1month)
+    print(more_than_1month)
     send_msg2(server, sender_email, more_than_3months)
     send_msg3(server, sender_email, more_than_1month)
 
