@@ -2,20 +2,29 @@
 <html>
     <head>
         <title>PM Electronics</title>
-        <link rel="icon" type="imgage" href="/static/logo.jpg">
+        <link rel="icon" type="image/png" href="/static/logo.jpg">
+        <style>
+            .content {
+                margin: 50px auto;
+                max-width: 800px;
+                padding: 20px;
+                background-color: #2E3B36;
+                border-radius: 10px;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+            }
+        </style>
     </head>
     <body style="background-color: rgb(62, 79, 73);">
         <div>
             <h1 style="text-align: center;color: rgb(45, 92, 4);background-color: rgb(241, 237, 16);">PM Electronics pvt. limited</h1>
         </div>
         <div>
-            <h2 style="text-align: center;color: rgb(255, 0, 0);background-color: rgb(153, 227, 56);"> Business Statistics </h2>
+            <h2 style="text-align: center;color: rgb(255, 0, 0);background-color: rgb(153, 227, 56);"> Stocks and Products </h2>
         </div>
-        <div style="margin-left: 10px;margin-top: 150px;">
+        <div class="content">
             {% for i in stcks %}
-            <h2>Stocks : <strong>{{i}}</strong></h2>
+            <h2>Stocks: <strong>{{ i }}</strong></h2>
             {% endfor %}
         </div>
     </body>
 </html>
-
